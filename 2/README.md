@@ -27,3 +27,51 @@ https://medium.com/@squadcast/prometheus-blackbox-exporter-a-guide-for-monitorin
 
 # Solution
 
+## Setup application 
+
+(host , port of my app is http://app:8080)
+
+I implement an application the handle the logic check the difference in block number between two providers (Ankr and Infura), the metrics will expose at **/metrics**
+
+The http_sd_exporter of my app will host at **/health**
+
+In the /health -> return HTTP_SD format, follow the document [http sd exporter](https://prometheus.io/docs/prometheus/latest/http_sd/). 
+
+```json
+[
+  {
+    "targets": [ "<host>", ... ],
+    "labels": {
+      "<labelname>": "<labelvalue>", ...
+    }
+  },
+  ...
+]
+```
+
+The host of target will be my application.
+
+## Setup prometheus
+
+Config prometheus to scrape http_sd_configs to the application
+
+```yaml
+scrape_configs:
+  - job_name: "blackbox"
+    http_sd_configs:
+      - url: "http://app:8080/health"
+        refresh_interval: 5s
+```
+
+## Check the result in Prometheus
+
+<img src="2/image/metrics.png" width="75%" title="metric-overview"> 
+
+<img src="2/image/sd.png" width="75%" title="sd-overview"> 
+
+# How to run application
+
+I already implement docker-compose file. To run my app, run this script to start docker-compose
+```bash
+docker-compose up --build
+```

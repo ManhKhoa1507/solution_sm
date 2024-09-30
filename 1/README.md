@@ -38,15 +38,23 @@ Possible problem and solution:
  Bonus: What if each Subnet has a `Weight int32` attribute and we try to make total weight allocated to each NAT Instance the same no matter how subnets allocated to each NAT Instance?
 
 # Solutions for problems 1:
+I have solutions for each case, but the time is limited, So I decide to implement 1 solution for this, with the bonus point **Bonus: What if each Subnet has a `Weight int32` attribute and we try to make total weight allocated to each NAT Instance the same no matter how subnets allocated to each NAT Instance?**
 
+## Solution
 
+For each subnet in the subnet list, we will find the NAT instance and assign the subnet to that NAT instance's ID.
 
-I have 2 solutions for this, but the time is limited, So I decide to implement with the bonus point **Bonus: What if each Subnet has a `Weight int32` attribute and we try to make total weight allocated to each NAT Instance the same no matter how subnets allocated to each NAT Instance?**
+The subnets in the same Availability Zone (AZ) should be allocated to the NAT instance located within that AZ. If no NAT instance exists in that AZ, the NAT list will include two NAT instances from other AZs.
 
-2 solutions I will brief above:
+To make sure the same number of private subnets allocated to each NAT Instance. We can use Round Robin algorithm.
 
+## Solution 2 (Implemented)
+The complex of this solution is O(n*m)
 
-The complex of this code is O(n*m)
+For each subnet in the subnet list, we will find the NAT instance with the least weight and assign the subnet to that NAT instance's ID, then calculate that NAT weight by add subnet weight.
+The subnets in the same Availability Zone (AZ) should be allocated to the NAT instance located within that AZ. If no NAT instance exists in that AZ, the NAT list will include two NAT instances from other AZs.
+
+## Example 
 ```bash
 ❯ python3 solve.py
 Enter number of nat:4

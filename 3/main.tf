@@ -16,6 +16,7 @@ locals {
   }
 }
 
+# Defined role
 locals {
   maintainer_role = {
     team1 = {
@@ -39,6 +40,7 @@ locals {
   }
 }
 
+# Map user to team
 locals {
   map_user_team = flatten([
     for team_name, members in var.team_member : [

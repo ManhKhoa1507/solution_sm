@@ -14,13 +14,13 @@ def solve():
     map_subnet_nat()
 
     # Print weight of each nat
-    print("NAT in zone us-west1-a:")
+    print("NAT in zone us-west1-a: [id, weight]")
     print(nat_A)
 
-    print("NAT in zone us-west1-b:")
+    print("NAT in zone us-west1-b: [id, weight]")
     print(nat_B)
 
-    print("NAT in zone us-west1-c:")
+    print("NAT in zone us-west1-c: [id, weight]")
     print(nat_C)
 
     # Print subnet belongs to nat ?
