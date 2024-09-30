@@ -65,9 +65,13 @@ scrape_configs:
 
 ## Check the result in Prometheus
 
-<img src="2/image/metrics.png" width="75%" title="metric-overview"> 
+Metrics
 
-<img src="2/image/sd.png" width="75%" title="sd-overview"> 
+<img src="image/metrics.png" width="75%" title="metric-overview"> 
+
+Service discovery
+
+<img src="image/sd.png" width="75%" title="sd-overview"> 
 
 # How to run application
 
