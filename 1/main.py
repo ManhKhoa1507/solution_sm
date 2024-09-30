@@ -59,14 +59,14 @@ def map_subnet_nat():
         sub_id = sub[0]
         sub_weight = sub[1]
 
-        nat_list = get_nat_list(sub_id)
+        nat_list = get_nat_list(sub_id, nat_A, nat_B, nat_C)
 
         # Get min least nat, then append subnet to the least weight nat
         pos = find_min_nat(nat_list)
         add_subnet_to_nat(sub, nat_list, pos)
 
 
-def get_nat_list(sub_id):
+def get_nat_list(sub_id, nat_A, nat_B, nat_C):
     # Get that nat_list base on sub_id
     # If nat_X down -> return 2 others NAT
     if "us-west1-a" in sub_id:
@@ -100,8 +100,11 @@ def find_min_nat(nat_list):
 
 def add_subnet_to_nat(sub, nat_list, index):
     sub_weight = sub[1]
+
+    # Map subnet to NAT
     sub[2] = nat_list[index][0]
 
     nat_list[index][1] += sub_weight
 
-solve()
+if __name__ == '__main__':
+    solve()
