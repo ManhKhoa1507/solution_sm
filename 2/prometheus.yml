@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: "blackbox"
+    http_sd_configs:
+      - url: "http://app:8080/health"
+        refresh_interval: 5s

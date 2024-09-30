@@ -1,0 +1,7 @@
+2/path
+*/.idea
+*/*.hcl
+*/*.tfstate
+*/.terraform
+.DS_STORE
+.idea
